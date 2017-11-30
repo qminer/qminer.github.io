@@ -749,3 +749,13 @@ td.gutter {
 .gist, .gist-file table tr td {
   border: unset;
 }
+
+
+#install-command{
+  font-family:Consolas,Monaco,"Andale Mono",monospace;
+  padding:5px 10px;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:3px;
+  max-width:375px;
+}
