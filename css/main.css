@@ -751,7 +751,7 @@ td.gutter {
 }
 
 
-#install-command{
+.cmd {
   font-family:Consolas,Monaco,"Andale Mono",monospace;
   padding:5px 10px;
   background:#fff;
