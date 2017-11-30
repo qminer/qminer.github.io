@@ -17,9 +17,9 @@ description: A virtual proof that name is awesome!
 
 # List of links in the navigation bar
 navbar-links:
-  Getting started: "gettingstarted"
-    - Installing: "installing"
-    - Hello World!: "helloworld"
+  Getting started:
+     - Installing: "installing"
+     - Hello World!: "helloworld"
   Javascript API: "https://rawgit.com/qminer/qminer/master/nodedoc/index.html"
   GitHub: "https://github.com/qminer/qminer"
 
