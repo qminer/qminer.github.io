@@ -1,16 +1,15 @@
 ---
 layout: page
-subtitle: QMiner: rapid development of data driven applications in Node.js
+title: QMiner
+subtitle: rapid development of data driven applications in Node.js
 use-site-title: true
 ---
 
 <div class="posts-list">
   {% for post in paginator.posts %}
   <article class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-          {% if post.title %}
-	  <h2 class="post-title">{{ post.title }}</h2>
-          {% endif %}
+    <a href="{{ post.url | prepend: site.baseurl }}">          
+	  <h2 class="post-title">{{ post.title }}</h2>        
 
 	  {% if post.subtitle %}
 	  <h3 class="post-subtitle">
