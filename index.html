@@ -17,9 +17,12 @@ use-site-title: true
   <hr>
 
   <div class="row">
+    <h2 class="post-title"> Word count</h2>
     <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
-      <h2 class="post-title"> Batch word count</h2>
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5">
+       <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -45,17 +48,15 @@ use-site-title: true
     console.log(el.keyword, el.weight);
   });
       </code></pre></div></div>
-    </div>
-    <div class="col-xl-5 col-lg-5 col-md-5">
-      <h2 class="post-title"> Stream </h2>
-        Add word count example
-    </div>
   </div>
 
   <div class="row">
+    <h2 class="post-title"> Batch keyword search</h2>
     <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
-      <h2 class="post-title"> Batch keyword search</h2>
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5">
+     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -85,16 +86,15 @@ use-site-title: true
   });
          </code></pre></div></div>
     </div>
-    <div class="col-xl-5 col-lg-5 col-md-5">
-      <h2 class="post-title"> Stream </h2>
-        Add word count example
-    </div>
   </div>
 
    <div class="row">
+    <h2 class="post-title"> Text search</h2>
     <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
-      <h2 class="post-title"> Batch text search</h2>
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+    </div>
+    <div class="col-xl-5 col-lg-5 col-md-5">
+     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -123,10 +123,6 @@ use-site-title: true
   let sim    = matrix.multiplyT(vector);
   sim.print();
          </code></pre></div></div>
-    </div>
-    <div class="col-xl-5 col-lg-5 col-md-5">
-      <h2 class="post-title"> Stream </h2>
-        Add word count example
     </div>
   </div>
 
