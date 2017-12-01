@@ -57,7 +57,7 @@ use-site-title: true
       <h2 class="post-title"> Keyword search</h2>
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
-     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+      <div id="my-element">
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -85,7 +85,7 @@ use-site-title: true
   res.toJSON().records.forEach((obj) => {
     console.log(obj.text);
   });
-         </code></pre></div></div>
+         </div>
     </div>
   </div>
 
