@@ -8,7 +8,9 @@ use-site-title: true
 
    <hr>
 
-<script src="https://embed.runkit.com" data-element-id="my-element"></script>
+<script src="https://embed.runkit.com" data-element-id="word-count"></script>
+<script src="https://embed.runkit.com" data-element-id="keyword-search"></script>
+<script src="https://embed.runkit.com" data-element-id="text-search"></script>
 
   <div class="row" align="center">
     <div class="col-xl-8 col-xl-offset-1 col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
@@ -24,7 +26,7 @@ use-site-title: true
       This is a basic example of how to do wordcount in QMiner.
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
-      <div id="my-element">
+      <div id="word-count">
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -57,7 +59,7 @@ use-site-title: true
       <h2 class="post-title"> Keyword search</h2>
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
-      <div id="my-element">
+      <div id="keyword-search">
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -94,7 +96,7 @@ use-site-title: true
       <h2 class="post-title"> Text search</h2>
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
-     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+      <div id="text-search">
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -122,7 +124,7 @@ use-site-title: true
   let matrix = ftr.extractSparseMatrix(tweetStore.allRecords);
   let sim    = matrix.multiplyT(vector);
   sim.print();
-         </code></pre></div></div>
+         </div>
     </div>
   </div>
 
