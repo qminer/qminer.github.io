@@ -20,30 +20,30 @@ use-site-title: true
     <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
       <h2 class="post-title"> Batch word count</h2>
         <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-var qm = require('qminer');
-// create the base object with the desired schema
-var base = new qm.Base({
-  mode: 'createClean',
-  schema: [{ name: 'tweets',
-       fields: [{ name: 'text', type: 'string' }]
-      }]
+  var qm = require('qminer');
+  // create the base object with the desired schema
+  var base = new qm.Base({
+    mode: 'createClean',
+    schema: [{ name: 'tweets',
+         fields: [{ name: 'text', type: 'string' }]
+        }]
+    });
+
+  // push the data
+  let tweetStore = base.store('tweets');
+  tweetStore.push({text: "This pen is green."});
+  tweetStore.push({text: "This pen is yellow."});
+  tweetStore.push({text: "This pen is blue."});
+  tweetStore.push({text: "This marker is yellow."});
+
+  // get the distribution of keywords
+  let distribution = tweetStore.allRecords.aggr(
+    {  name: "test", type: "keywords", field: "text" });
+
+  // output the sorted keyword-weight pairs
+  distribution.keywords.forEach((el) => {
+    console.log(el.keyword, el.weight);
   });
-
-// push the data
-let tweetStore = base.store('tweets');
-tweetStore.push({text: "This pen is green."});
-tweetStore.push({text: "This pen is yellow."});
-tweetStore.push({text: "This pen is blue."});
-tweetStore.push({text: "This marker is yellow."});
-
-// get the distribution of keywords
-let distribution = tweetStore.allRecords.aggr(
-  {  name: "test", type: "keywords", field: "text" });
-
-// output the sorted keyword-weight pairs
-distribution.keywords.forEach((el) => {
-  console.log(el.keyword, el.weight);
-});
       </code></pre></div></div>
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
@@ -56,27 +56,33 @@ distribution.keywords.forEach((el) => {
     <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
       <h2 class="post-title"> Batch keyword search</h2>
       <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-var qm = require('qminer');
-// create the base object with the desired schema
-var base = new qm.Base({
+  var qm = require('qminer');
+  // create the base object with the desired schema
+  var base = new qm.Base({
   mode: 'createClean',
   schema: [{ name: 'tweets',
-       fields: [{ name: 'text', type: 'string' }]
+     fields: [{ name: 'text', type: 'string' }],
+     keys: [{ "field": "text", "type": "text_position" }]
       }]
   });
 
-// create the feature space object
-var ftr = new qm.FeatureSpace(base, { type: "text", source: "tweets", field: "text" });
+  // push the data
+  let tweetStore = base.store('tweets');
+  tweetStore.push({text: "This pen is green."});
+  tweetStore.push({text: "This pen is yellow."});
+  tweetStore.push({text: "This pen is blue."});
+  tweetStore.push({text: "This marker is yellow."});
 
-// push the data
-let tweetStore = base.store('tweets');
-tweetStore.push({text: "This pen is green."});
-tweetStore.push({text: "This pen is yellow."});
-tweetStore.push({text: "This pen is blue."});
-tweetStore.push({text: "This marker is yellow."});
+  let query = {
+    $from: "tweets",
+    $or: [{text: "pen"}, {text: "yellow"}]
+  };
 
-// update the feature space with the data
-ftr.updateRecords(tweetStore.allRecords);
+  var res = base.search(query);
+
+  res.toJSON().records.forEach((obj) => {
+    console.log(obj.text);
+  });
          </code></pre></div></div>
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
@@ -89,27 +95,33 @@ ftr.updateRecords(tweetStore.allRecords);
     <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
       <h2 class="post-title"> Batch text search</h2>
       <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-var qm = require('qminer');
-// create the base object with the desired schema
-var base = new qm.Base({
-  mode: 'createClean',
-  schema: [{ name: 'tweets',
-       fields: [{ name: 'text', type: 'string' }]
-      }]
-  });
+  var qm = require('qminer');
+  // create the base object with the desired schema
+  var base = new qm.Base({
+    mode: 'createClean',
+    schema: [{ name: 'tweets',
+         fields: [{ name: 'text', type: 'string' }]
+        }]
+    });
 
-// create the feature space object
-var ftr = new qm.FeatureSpace(base, { type: "text", source: "tweets", field: "text" });
+  // create the feature space object
+  var ftr = new qm.FeatureSpace(base, { type: "text", source: "tweets", field: "text" });
 
-// push the data
-let tweetStore = base.store('tweets');
-tweetStore.push({text: "This pen is green."});
-tweetStore.push({text: "This pen is yellow."});
-tweetStore.push({text: "This pen is blue."});
-tweetStore.push({text: "This marker is yellow."});
+  // push the data
+  let tweetStore = base.store('tweets');
+  tweetStore.push({text: "This pen is green."});
+  tweetStore.push({text: "This pen is yellow."});
+  tweetStore.push({text: "This pen is blue."});
+  tweetStore.push({text: "This marker is yellow."});
 
-// update the feature space with the data
-ftr.updateRecords(tweetStore.allRecords);
+  // update the feature space with the data
+  ftr.updateRecords(tweetStore.allRecords);
+
+  let query = tweetStore.newRecord({"text": "The pen and the marker are green."})
+  let vector = ftr.extractSparseVector(query);
+  let matrix = ftr.extractSparseMatrix(tweetStore.allRecords);
+  let sim    = matrix.multiplyT(vector);
+  sim.print();
          </code></pre></div></div>
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
