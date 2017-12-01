@@ -1,16 +1,23 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: Install QMiner
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+### Prerequisites
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+**node.js v8.x, v6.x, v4.x and npm 5.3 or higher**
 
-What else do you need?
+To test that your node.js version is correct, run ```node --version``` and ```npm --version```. Not compatible with nodejs v0.10 or older.
 
-### my history
+**Windows**
+- [Visual C++ Redistributable Packages for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48145)   download **vcredist_x64.exe** for node.js x64 or **vcredist_x86.exe** for node.js x86.
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+### Install
+
+	npm install qminer
+
+**Test**
+
+	node -e "require('qminer'); console.log('OK')"
+
+---
