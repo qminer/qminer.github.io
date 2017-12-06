@@ -25,11 +25,11 @@ use-site-title: true
       <h2 class="post-title"> Word count</h2>
       <p> Word count is a "Hello World!"-like example used for text mining tools. See how QMiner can count words but mind that it's not a natural for the library! </p>
 
-      <p>Every application that uses QMiner has to instantiate the base object with the schema of the input data. The example defines a schema with only text and pushes some example sentences as tweets in the tweet store. The frequency of the keywords is then provided by the aggregate of type "keyword". This aggregate returns a weighted and sorted vector of keywords: [ (yellow, 0.60), (pen, 0.49), (green, 0.37), (blue, 0.37), (marker, 0.31) ]. </p>
+      <p>Every application that uses QMiner has to instantiate the base object with the schema of the input data. Let's define a schema with text and push some example sentences in the tweet store. The frequency of the keywords is then provided by the "keyword" aggregate which returns a weighted and sorted vector of keywords: [ (yellow, 0.60), (pen, 0.49), (green, 0.37), (blue, 0.37), (marker, 0.31) ]. </p>
 
-      <p>The results show that "yellow" is the most frequent keyword, followed by "pen", "green", etc. QMiner automatically discards connection words that are not important such as "this" and "is".</p>
+      <p>You can see that "yellow" is the most frequent keyword, followed by "pen", "green", etc. QMiner automatically discards connection words that are not important such as "this" and "is".</p>
 
-      <p>Play and tune this example on <a href="https://runkit.com/carolninap/5a21517b57d217001278fd2a" class="post-read-more">RunKit</a>!</p>
+      <p>Check it out on <a href="https://runkit.com/carolninap/5a21517b57d217001278fd2a" class="post-read-more">RunKit</a>!</p>
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
       <div id="word-count">
