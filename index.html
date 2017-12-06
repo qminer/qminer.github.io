@@ -23,7 +23,13 @@ use-site-title: true
   <div class="row">
     <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
       <h2 class="post-title"> Word count</h2>
-      This is a basic example of how to do wordcount in QMiner.
+      Word count is a "Hello World!"-like example used for text mining tools. We show how this can be implemented with QMiner, however, this operation is not natural for the library.
+
+      Every application that uses QMiner has to instantiate the base object with the schema of the input data. The example defines a schema with only text and pushes some example sentences as tweets in the tweet store. The frequency of the keywords is then provided by the aggregate of type "keyword". This aggregate returns a weighted and sorted vector of keywords: [ (yellow, 0.60), (pen, 0.49), (green, 0.37), (blue, 0.37), (marker, 0.31) ].
+
+      The results show that "yellow" is the most frequent keyword, followed by "pen", "green", etc. QMiner automatically discards connection words that are not important such as "this" and "is".
+
+      Play and tune this example on <a href="https://runkit.com/carolninap/5a21517b57d217001278fd2a" class="post-read-more">RunKit</a>!
     </div>
     <div class="col-xl-5 col-lg-5 col-md-5">
       <div id="word-count">
@@ -48,8 +54,8 @@ use-site-title: true
     {  name: "test", type: "keywords", field: "text" });
 
   // output the sorted keyword-weight pairs
-  distribution.keywords.forEach((el) => {
-    console.log(el.keyword, el.weight);
+  distribution.keywords.forEach((obj) => {
+    console.log(obj.keyword, obj.weight);
   });
       </div>
   </div>
