@@ -155,50 +155,50 @@ use-site-title: true
  var qm = require('qminer');
  // create the base object
  let base = new qm.Base({
-            mode: 'createClean',
-            schema: [
-              {
-                  name: 'People',
-                  fields: [
-                      { name: 'Name', type: 'string', primary: true },
-                      { name: 'Gender', type: 'string' }
-                  ],
-              }
-            ]
-        });
+    mode: 'createClean',
+    schema: [
+      {
+          name: 'People',
+          fields: [
+              { name: 'Name', type: 'string', primary: true },
+              { name: 'Gender', type: 'string' }
+          ],
+      }
+    ]
+});
 
- let peopleStore = base.store('People');
+ let ps = base.store('People');
 
  // create a custom stream object
- let ourStream = [];
+ let s = [];
  // each element of the object has to comply to the base schema definition
- ourStream.push(peopleStore.newRecord({ Name: 'John', Gender: 'Male' }));
- ourStream.push(peopleStore.newRecord({ Name: 'Mary', Gender: 'Female' }));
- ourStream.push(peopleStore.newRecord({ Name: 'Jill', Gender: 'Female' }));
- ourStream.push(peopleStore.newRecord({ Name: 'Jack', Gender: 'Male' }));
- ourStream.push(peopleStore.newRecord({ Name: 'Mary', Gender: 'Female' }));
- ourStream.push(peopleStore.newRecord({ Name: 'Andy', Gender: 'Male' }));
- ourStream.push(peopleStore.newRecord({ Name: 'Andy', Gender: 'Male' }));
+ s.push(ps.newRecord({ Name: 'John', Gender: 'Male' }));
+ s.push(ps.newRecord({ Name: 'Mary', Gender: 'Female' }));
+ s.push(ps.newRecord({ Name: 'Jill', Gender: 'Female' }));
+ s.push(ps.newRecord({ Name: 'Jack', Gender: 'Male' }));
+ s.push(ps.newRecord({ Name: 'Mary', Gender: 'Female' }));
+ s.push(ps.newRecord({ Name: 'Andy', Gender: 'Male' }));
+ s.push(ps.newRecord({ Name: 'Andy', Gender: 'Male' }));
 
  // create your custom stream aggregate
  var stream = new qm.StreamAggr(base, new function () {
-                var data = {};
-                this.onAdd = function (rec) {
-                    data[rec.Name] = data[rec.Name] == undefined ? 1 : data[rec.Name] + 1;
-                };
-                this.saveJson = function (limit) {
-                    return data;
-                };
-                this.getFloat = function (name) {
-                    return data[name] == undefined ? null : data[name];
-                };
-                this.getInteger = function (name) {
-                    return data[name] == undefined ? null : data[name];
-                };
-            });
+    var data = {};
+    this.onAdd = function (rec) {
+        data[rec.Name] = data[rec.Name] == undefined ? 1 : data[rec.Name] + 1;
+    };
+    this.saveJson = function (limit) {
+        return data;
+    };
+    this.getFloat = function (name) {
+        return data[name] == undefined ? null : data[name];
+    };
+    this.getInteger = function (name) {
+        return data[name] == undefined ? null : data[name];
+    };
+  });
 
  // start ingesting the stream
- ourStream.forEach((obj) => {
+ s.forEach((obj) => {
     stream.onAdd(obj);
     console.log("John:" + stream.getFloat("John") + " --- Mary:" + stream.getFloat("Mary"));
  });
