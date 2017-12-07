@@ -156,16 +156,13 @@ use-site-title: true
  // create the base object
  let base = new qm.Base({
     mode: 'createClean',
-    schema: [
-      {
+    schema: [{
           name: 'People',
           fields: [
               { name: 'Name', type: 'string', primary: true },
               { name: 'Gender', type: 'string' }
-          ],
-      }
-    ]
-});
+          ]}
+    ]});
 
  let ps = base.store('People');
 
@@ -207,20 +204,14 @@ use-site-title: true
   <div class="col-xl-6 col-lg-6 col-md-6">
     <h2 class="post-title"> Text stream</h2>
     <p>QMiner is also able to process streaming data. Here's a custom defined stream aggregate, check for native aggregates under the 'Time series' menu tab.</p>
-    <p>We define the schema as usually. We simulate our stream by creating the <code>ourStream</code> vector. Each element of the vector has to comply with the pre-defined schema. Then we define out custom javascript stream aggregate that counts the frequency of the Names. Note that this example can be adapted to perform keyword count on streaming data.</p>
-    <p>Note that when ingesting the stream, QMiner only keeps in memory the model and discards the data itself. The frequency of the two selected names is displayed after each new data point comes in: <code>
-<br>
-"Element: 0 John:1 --- Mary:null"
-<br>
-"Element: 1 John:1 --- Mary:1"
-<br>
-"Element: 2 John:1 --- Mary:1"
-<br>
-"Element: 3 John:1 --- Mary:1"
-<br>
-"Element: 4 John:1 --- Mary:2"
-<br>
-"Element: 5 John:1 --- Mary:2"
+    <p>We define the schema as usually. We simulate our stream by creating the <code>s</code> vector. Each element of the vector has to comply with the pre-defined schema. Then we define out custom javascript stream aggregate that counts the frequency of the Names. Note that this example can be adapted to perform word count on streaming data.</p>
+    <p>Note that when ingesting the stream, QMiner only keeps in memory the model and discards the data itself. The frequency of the two selected names is displayed after each new data point comes in:<code>
+<br>"Element: 0 John:1 --- Mary:null"
+<br>"Element: 1 John:1 --- Mary:1"
+<br>"Element: 2 John:1 --- Mary:1"
+<br>"Element: 3 John:1 --- Mary:1"
+<br>"Element: 4 John:1 --- Mary:2"
+<br>"Element: 5 John:1 --- Mary:2"
     </code> </p>
     <p>Play with it on <a href="https://runkit.com/carolninap/5a295beaaeefa1001221f121" class="post-read-more">RunKit</a>!</p>
   </div>
