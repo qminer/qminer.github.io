@@ -12,8 +12,8 @@ use-site-title: true
 <script src="https://embed.runkit.com" data-element-id="keyword-search"></script>
 <script src="https://embed.runkit.com" data-element-id="text-search"></script>
 
-  <div class="row">
-    <div class="col-xl-8 col-xl-offset-1 col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1">
+  <div class="row" align="center">
+    <div class="col-xl-8 col-lg-8 col-md-10">
       <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ npm install qminer -save </code></pre></div></div>
     </div>
   </div>
@@ -21,7 +21,7 @@ use-site-title: true
   <hr>
 
   <div class="row">
-    <div class="col-xl-5 col-lg-5 col-md-5">
+    <div class="col-xl-6 col-lg-6 col-md-6">
       <h2 class="post-title"> Word count</h2>
       <p> It's the 'Hello World!' example used for text mining tools. QMiner can count words, however more sophisticated text mining applications better suited for the library! </p>
 
@@ -29,7 +29,7 @@ use-site-title: true
 
       <p>Play with it on <a href="https://runkit.com/carolninap/5a21517b57d217001278fd2a" class="post-read-more">RunKit</a>!</p>
     </div>
-    <div class="col-xl-5 col-lg-5 col-md-5">
+    <div class="col-xl-6 col-lg-6 col-md-6">
       <div id="word-count">
   var qm = require('qminer');
   // create the base object with the desired schema
@@ -62,7 +62,7 @@ use-site-title: true
 <hr>
 
 <div class="row">
-  <div class="col-xl-5 col-lg-5 col-md-5">
+  <div class="col-xl-6 col-lg-6 col-md-6">
      <div id="keyword-search">
   var qm = require('qminer');
   // create the base object with the desired schema
@@ -93,7 +93,7 @@ use-site-title: true
   });
        </div>
   </div>
-  <div class="col-xl-5 col-lg-5 col-md-5">
+  <div class="col-xl-6 col-lg-6 col-md-6">
     <h2 class="post-title"> Keyword search</h2>
     <p>Let's see which tweet includes the keyword 'pen' OR 'yellow'!</p>
     <p>We define the schema and push data in the store. Note that we index keywords by adding the <code>keys: []</code> configuration vector to the schema description. The query is then ran to retrieve the list of records from the store. All 4 records are included in the result.</p>
@@ -105,14 +105,14 @@ use-site-title: true
 <hr>
 
 <div class="row">
-  <div class="col-xl-5 col-lg-5 col-md-5">
+  <div class="col-xl-6 col-lg-6 col-md-6">
     <h2 class="post-title"> Text search</h2>
     <p>Let's see which tweet is the most similar to an input tweet!</p>
     <p>We define the schema and push data in the store. Then we create a feature space over the text of all the training tweets. The query is then used to create an ordered list of similar tweets. Here's the similarity vector: <code>0.71, 0.05, 0.02, 0.62"</code>. The first and the last tweets from the store are the most similar to the query tweet while the second and third are not too similar.</p>
     <p>In the query tweet try making the words 'pen' and 'marker' plural and hit Run. Suddently only the first tweet is now computed as being similar to the query <code>0.97, 0, 0, 0</code>, even though, content-wise not much changed. Now add the following in the feature space definition after the last 'text': <code>, tokenizer: { type: "unicode", stopwords: "en", stemmer: "porter" }</code> and hit Run! The similarities now become the same as originally as the <code>stemmer: porter</code> makes sure these minor differences are ignored.</p>
     <p>Play with it on <a href="https://runkit.com/carolninap/5a2167f7416c8700125315cf" class="post-read-more">RunKit</a>!</p>
   </div>
-  <div class="col-xl-5 col-lg-5 col-md-5">
+  <div class="col-xl-6 col-lg-6 col-md-6">
     <div id="text-search">
   var qm = require('qminer');
   // create the base object with the desired schema
