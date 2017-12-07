@@ -203,7 +203,7 @@ use-site-title: true
   </div>
   <div class="col-xl-6 col-lg-6 col-md-6">
     <h2 class="post-title"> Text stream</h2>
-    <p>QMiner is also able to process streaming data. Here's a custom defined stream aggregate, check for native aggregates under the 'Time series' menu tab.</p>
+    <p>QMiner is also able to process streaming data. Here's a custom defined stream aggregate. For native aggregates check the 'Time series' menu tab.</p>
     <p>We define the schema as usually. We simulate our stream by creating the <code>s</code> vector. Each element of the vector has to comply with the pre-defined schema. Then we define out custom javascript stream aggregate that counts the frequency of the Names.</p>
     <p>Note that when ingesting the stream, QMiner only keeps in memory the model and discards the data itself. The frequency of the two selected names is displayed after each new data point comes in:
       <br><code>"[0] John:1 --- Mary:null"</code>
