@@ -19,6 +19,7 @@ description: A virtual proof that name is awesome!
 navbar-links:
   Setup: "setup"
   Recommender sys: "recommendations"
+  Time series: "timeseries"
   Anomaly detection: "anomalies"
   Javascript API: "https://rawgit.com/qminer/qminer/master/nodedoc/index.html"
   GitHub: "https://github.com/qminer/qminer"

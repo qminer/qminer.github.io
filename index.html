@@ -146,6 +146,80 @@ use-site-title: true
   </div>
 </div>
 
+<hr>
+
+<div class="row">
+  <div class="col-xl-6 col-lg-6 col-md-6">
+     <div id="keyword-search">
+ var qm = require('qminer');
+ // create the base object
+ let base = new qm.Base({
+            mode: 'createClean',
+            schema: [
+              {
+                  name: 'People',
+                  fields: [
+                      { name: 'Name', type: 'string', primary: true },
+                      { name: 'Gender', type: 'string' }
+                  ],
+              }
+            ]
+        });
+
+ let peopleStore = base.store('People');
+
+ // create a custom stream object
+ let ourStream = [];
+ // each element of the object has to comply to the base schema definition
+ ourStream.push(peopleStore.newRecord({ Name: 'John', Gender: 'Male' }));
+ ourStream.push(peopleStore.newRecord({ Name: 'Mary', Gender: 'Female' }));
+ ourStream.push(peopleStore.newRecord({ Name: 'Jill', Gender: 'Female' }));
+ ourStream.push(peopleStore.newRecord({ Name: 'Jack', Gender: 'Male' }));
+ ourStream.push(peopleStore.newRecord({ Name: 'Mary', Gender: 'Female' }));
+ ourStream.push(peopleStore.newRecord({ Name: 'Andy', Gender: 'Male' }));
+ ourStream.push(peopleStore.newRecord({ Name: 'Andy', Gender: 'Male' }));
+
+ // create your custom stream aggregate
+ var stream = new qm.StreamAggr(base, new function () {
+                var data = {};
+                this.onAdd = function (rec) {
+                    data[rec.Name] = data[rec.Name] == undefined ? 1 : data[rec.Name] + 1;
+                };
+                this.saveJson = function (limit) {
+                    return data;
+                };
+                this.getFloat = function (name) {
+                    return data[name] == undefined ? null : data[name];
+                };
+                this.getInteger = function (name) {
+                    return data[name] == undefined ? null : data[name];
+                };
+            });
+
+ // start ingesting the stream
+ ourStream.forEach((obj) => {
+    stream.onAdd(obj);
+    console.log("John:" + stream.getFloat("John") + " --- Mary:" + stream.getFloat("Mary"));
+ });
+       </div>
+  </div>
+  <div class="col-xl-6 col-lg-6 col-md-6">
+    <h2 class="post-title"> Text stream</h2>
+    <p>QMiner is also able to process streaming data. Here's a custom defined stream aggregate, check for native aggregates under the 'Time series' menu tab.</p>
+    <p>We define the schema as usually. We simulate our stream by creating the <code>ourStream</code> vector. Each element of the vector has to comply with the pre-defined schema. Then we define out custom javascript stream aggregate that counts the frequency of the Names. Note that this example can be adapted to perform keyword count on streaming data.</p>
+    <p>Note that when ingesting the stream, QMiner only keeps in memory the model and discards the data itself. The frequency of the two selected names is displayed after each new data point comes in: <code>
+"Element: 0 John:1 --- Mary:null"
+<br>
+"Element: 1 John:1 --- Mary:1"
+"Element: 2 John:1 --- Mary:1"
+"Element: 3 John:1 --- Mary:1"
+"Element: 4 John:1 --- Mary:2"
+"Element: 5 John:1 --- Mary:2"
+    </code> </p>
+    <p>Play with it on <a href="https://runkit.com/carolninap/5a295beaaeefa1001221f121" class="post-read-more">RunKit</a>!</p>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-xl-10 col-lg-10 col-md-10" align="center">
     <h2 class="post-title"> Check out QMiner at Nodejs interactive!</h2>
