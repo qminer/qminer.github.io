@@ -677,7 +677,7 @@ table tr td :last-child {
 /* --- Code blocks --- */
 
 pre {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5em;
 }
 pre code {
@@ -748,14 +748,4 @@ td.gutter {
 
 .gist, .gist-file table tr td {
   border: unset;
-}
-
-
-.cmd {
-  font-family:Consolas,Monaco,"Andale Mono",monospace;
-  padding:5px 10px;
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:3px;
-  max-width:375px;
 }

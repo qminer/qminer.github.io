@@ -59,9 +59,11 @@ use-site-title: true
   </div>
 </div>
 
-  <div class="row">
-    <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
-       <div id="keyword-search">
+<hr>
+
+<div class="row">
+  <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
+     <div id="keyword-search">
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -89,26 +91,28 @@ use-site-title: true
   res.toJSON().records.forEach((obj) => {
     console.log(obj.text);
   });
-         </div>
-    </div>
-    <div class="col-xl-5 col-lg-5 col-md-5">
-      <h2 class="post-title"> Keyword search</h2>
-      <p>Let's see which tweet includes the keyword pen OR yellow!</p>
-      <p>We define the schema and push data in the store. Note that we index keywords by adding the <pre><code>keys: []</code></pre> configuration vector to the schema description. The query is then ran to retrieve the list of records from the store. All 4 records are included in the result.</p>
-      <p>Now replace the second line in the query object with <pre><code> "text": "pen", "text": "yellow" </code></pre> and run it again. The result will not have 2 records that include pen AND yellow. </p>
-      <p>Play with it on <a href="https://runkit.com/carolninap/5a2164ea416c870012531290" class="post-read-more">RunKit</a>!</p>
-    </div>
+       </div>
   </div>
+  <div class="col-xl-5 col-lg-5 col-md-5">
+    <h2 class="post-title"> Keyword search</h2>
+    <p>Let's see which tweet includes the keyword "pen" OR "yellow"!</p>
+    <p>We define the schema and push data in the store. Note that we index keywords by adding the <code>keys: []</code> configuration vector to the schema description. The query is then ran to retrieve the list of records from the store. All 4 records are included in the result.</p>
+    <p>Now replace the second line of the query object with <code> "text": "pen", "text": "yellow" </code> and hit Run. The result will now have 2 records that include both "pen" AND "yellow". </p>
+    <p>Play with it on <a href="https://runkit.com/carolninap/5a2164ea416c870012531290" class="post-read-more">RunKit</a>!</p>
+  </div>
+</div>
 
-   <div class="row">
-    <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
-      <h2 class="post-title"> Text search</h2>
-      <p>Let's see which tweet is the most similar to an input tweet!</p>
-      <p>We define the schema and push data in the store. Then we create a feature space over the text of all the training tweets. The query is then used to create an ordered list of similar tweets:</p>
-      <p>Play with it on <a href="https://runkit.com/carolninap/5a2167f7416c8700125315cf" class="post-read-more">RunKit</a>!</p>
-    </div>
-    <div class="col-xl-5 col-lg-5 col-md-5">
-      <div id="text-search">
+<hr>
+
+<div class="row">
+  <div class="col-xl-5 col-lg-5 col-md-5 col-md-offset-1">
+    <h2 class="post-title"> Text search</h2>
+    <p>Let's see which tweet is the most similar to an input tweet!</p>
+    <p>We define the schema and push data in the store. Then we create a feature space over the text of all the training tweets. The query is then used to create an ordered list of similar tweets. Here's the similarity vector: <code>0.71452, 0.0556535, 0.0294997, 0.625755"</code>. The first and the last tweets from the store are the most similar to the query tweet while the second and third are not too similar.</p>
+    <p>Play with it on <a href="https://runkit.com/carolninap/5a2167f7416c8700125315cf" class="post-read-more">RunKit</a>!</p>
+  </div>
+  <div class="col-xl-5 col-lg-5 col-md-5">
+    <div id="text-search">
   var qm = require('qminer');
   // create the base object with the desired schema
   var base = new qm.Base({
@@ -136,15 +140,13 @@ use-site-title: true
   let matrix = ftr.extractSparseMatrix(tweetStore.allRecords);
   let sim    = matrix.multiplyT(vector);
   sim.print();
-         </div>
     </div>
   </div>
+</div>
 
-  <hr>
-
-  <div class="row">
-    <div class="col-xl-10 col-lg-10 col-md-10 col-md-offset-1">
-       <h2 class="post-title"> Check out QMiner at Nodejs interactive!</h2>
-      <iframe width="640" height="360" src="https://www.youtube.com/embed/liA0ahRj9Nw" frameborder="0" allowfullscreen></iframe>
-    </div>
+<div class="row">
+  <div class="col-xl-10 col-lg-10 col-md-10 col-md-offset-1">
+    <h2 class="post-title"> Check out QMiner at Nodejs interactive!</h2>
+    <iframe width="640" height="360" src="https://www.youtube.com/embed/liA0ahRj9Nw" frameborder="0" allowfullscreen></iframe>
   </div>
+</div>
