@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Recommender systems
+title: Anomaly detection
 ---
 
 TBD
