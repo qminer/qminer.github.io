@@ -5,13 +5,13 @@ title: Anomaly detection
 
 # Anomaly detection
 
-Various types of anomaly detection can be created using QMiner platform. 
+By anomaly we refer to patterns that are unusual, unexpected or rare in the data under analysis. With QMiner, anomalies can be detected on several types of static or dynamic data.
 
-## Anomalies in text stream
+## Anomalies in text streams
 
-Prototype for novelty detection in a news-stream, based on data from Event Registry. The prototype is using QMiner's anomaly detection stream aggregate based on k-Nearest Neighbor algorithm.
+Let's try to detect new topics that are published in the media. These topics should be unseen or extremely rare in the analyzed data and can therefore seen as "anomalies". We assume that there is a stream of articles being pushed to the system. When new topics are detected, alerts are triggered.
 
-We firstly import all relevant libraries.
+Let's first import all the relevant libraries.
 
 ````javascript
 let qm = require('qminer');
@@ -20,7 +20,7 @@ let readline = require('readline');
 let eachline = require('eachline');
 ````
 
-Define the storage schema. We define one store called 'articles' ...
+Then we define the store called "Articles" having a schema with four fields.
 
 ````javascript
 let base = new qm.Base({
@@ -40,8 +40,9 @@ let base = new qm.Base({
 
 let articles = base.store('Articles');
 ````
+Next we define the pipeline that processes the news articles. The pipelines has several processing modules: the model, the trigger, the anomaly detection algorithm and the actual alert.
 
-... a feature space aggregator on the article store.
+To keep a model of the past articles, we need feature space aggregator on the article store. The model will use the text from the "Text" of the article and will use "tfidf" weight to compute the importance of various words. The model will need at least 2 articles to be initialized and will consider pairs of two words (the n-grams) parameter.
 
 ````javascript
 let aggrFSA = {
@@ -67,7 +68,7 @@ let aggrFSA = {
 let ftrSpaceAggr = articles.addStreamAggr(aggrFSA);
 ````
 
-We use a 'fake' time series tick stream aggregator for the 'Articles' store to trigger feature space aggregate. This is why articles store has a 'fake' numeric field 'Number'.
+This prototype examines articles at a constant rate. We use an artificial time series to simulate this constant rate. We implement it using the tick stream aggregator for the 'Articles' store. The model defined before updates at this rate.
 
 ````javascript
 let aggrT = {
@@ -81,7 +82,7 @@ let aggrT = {
 let tickAggr = articles.addStreamAggr(aggrT);
 ````
 
-Novelty detection is implemented using Nearest Neighbors anomaly detector aggregator.  Aggregator is used on the articles store and takes timestamped features as input. The time stamp is provided by the tick aggregator while the feature vector is provided by the feature space aggregator.
+The novelty detection is implemented using the Nearest Neighbors anomaly detector aggregator. The aggregator takes timestamped features as input. The time stamp is provided by the previously defined tick aggregator and feature space aggregator. It considers a window of 200 most recent articles and computes the distances between these. The most distant articles are considered as anomalies. The rate of anomalies can be tuned using the "rate" parameter - play with it on RunKit!
 
 ````javascript
 let aggrAD = {
@@ -97,7 +98,7 @@ let aggrAD = {
 let anomaly = articles.addStreamAggr(aggrAD);
 ````
  
-Here we define our monitoring stream aggregate.
+The alert monitoring stream aggregate is a custom defined stream aggegate that outputs alerts with severity levels above 2. 
 
 ````javascript
 // Define monitoring stream aggregate.
@@ -107,19 +108,17 @@ let monitoringAggr = articles.addStreamAggr({
     }
 });
 ````
-Articles are loaded from our server. 6 different sets are available. Note that stemmer and stopwords need to be changed for Slovenian language.
+
+Now that the processing pipeline is defined, we can start pushing the stream of data in the system Articles are loaded from our server.
 
 ````javascript
-// Define global variable for storing results.
+// Define a global variable for storing the results.
 let results = [];
 let rates = [];
 let count = [0, 0, 0, 0];
 
-// load articles into the store via simulated stream
+// For the example, we use English articles from the intyernational media about the sky champion Peter Prevc. Other data sets are also available.
 let ARTICLES_URL = "http://atena.ijs.si/data/novelty/PeterPrevcENG.json";
-// let ARTICLES_URL = "http://atena.ijs.si/data/novelty/PeterPrevcSLV.json";
-// let ARTICLES_URL = "http://atena.ijs.si/data/novelty/BorutPahorENG.json";
-// let ARTICLES_URL = "http://atena.ijs.si/data/novelty/BorutPahorSLV.json";
 // let ARTICLES_URL = "http://atena.ijs.si/data/novelty/MicrosoftENG.json";
 // let ARTICLES_URL = "http://atena.ijs.si/data/novelty/EuropeanComissionENG.json";
 
