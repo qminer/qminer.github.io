@@ -18,8 +18,8 @@ description: A virtual proof that name is awesome!
 # List of links in the navigation bar
 navbar-links:
   Setup: "setup"
-  Recommender sys: "recommendations"
-  Time series: "timeseries"
+#  Recommender sys: "recommendations"
+#  Time series: "timeseries"
   Anomaly detection: "anomalies"
   Javascript API: "https://rawgit.com/qminer/qminer/master/nodedoc/index.html"
   GitHub: "https://github.com/qminer/qminer"
