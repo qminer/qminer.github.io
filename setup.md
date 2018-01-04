@@ -104,7 +104,7 @@ Then select `action_after_build` - _properties_ - _Debugging_ and set:
 
 These instructions are for compiling, unit testing and debugging the C++ based node.js addon. If you only want to use the qminer module, just follow the steps in README.md.
 
-### MacOS
+#### MacOS
 
 **Prerequisites**
 
