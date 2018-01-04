@@ -25,9 +25,13 @@ use-site-title: true
   <div class="row">
     <div class="col-xl-6 col-lg-6 col-md-6">
       <h2 class="post-title"> Word count</h2>
-      <p> It's the 'Hello World!' example used for text mining tools. QMiner can count words, however more sophisticated text mining applications better suited for the library! </p>
+      <p> It's the 'Hello World!' example used for text mining tools. QMiner can count words, 
+         however more sophisticated text mining applications better suited for the library! </p>
 
-      <p>Let's define a schema with text and push some example sentences in the store. The frequency of the keywords is then provided by the "keyword" aggregate which returns a weighted and sorted vector of keywords: <code>[ (yellow, 0.60), (pen, 0.49),  (green, 0.37),  (blue, 0.37),  (marker, 0.31) ]</code> QMiner automatically discards connection words that are not important such as "this" and "is".</p>
+      <p>Let's define a schema with text and push some example sentences in the store. The frequency
+         of the keywords is provided by the "keyword" aggregate which returns a weighted and sorted 
+         vector of keywords: <code>[ (yellow, 0.60), (pen, 0.49),  (green, 0.37),  (blue, 0.37),  (marker, 0.31) ]</code>. 
+         QMiner automatically discards connection words that are not important such as "this" and "is".</p>
 
       <p>Play with it on <a href="https://runkit.com/carolninap/5a21517b57d217001278fd2a" class="post-read-more">RunKit</a>!</p>
     </div>
@@ -98,8 +102,11 @@ use-site-title: true
   <div class="col-xl-6 col-lg-6 col-md-6">
     <h2 class="post-title"> Keyword search</h2>
     <p>Let's see which tweet includes the keyword 'pen' OR 'yellow'!</p>
-    <p>We define the schema and push data in the store. Note that we index keywords by adding the <code>keys: []</code> configuration vector to the schema description. The query is then ran to retrieve the list of records from the store. All 4 records are included in the result.</p>
-    <p>Now replace the second line of the query object with <code> "text": "pen", "text": "yellow" </code> and hit Run. The result will now have 2 records that include both 'pen' AND 'yellow'. </p>
+    <p>We define the schema and push data in the store. Note that we index keywords by adding the 
+       <code>keys: []</code> configuration vector to the schema description. The query is run 
+       to retrieve the list of records from the store. All four records are included in the result.</p>
+    <p>Now replace the second line of the query object with <code> "text": "pen", "text": "yellow" </code> 
+       and hit Run. The result will now have two records that include both 'pen' AND 'yellow'. </p>
     <p>Play with it on <a href="https://runkit.com/carolninap/5a2164ea416c870012531290" class="post-read-more">RunKit</a>!</p>
   </div>
 </div>
@@ -108,10 +115,18 @@ use-site-title: true
 
 <div class="row">
   <div class="col-xl-6 col-lg-6 col-md-6">
-    <h2 class="post-title"> Text search</h2>
+    <h2 class="post-title"> Nearest neighbor </h2>
     <p>Let's see which tweet is the most similar to an input tweet!</p>
-    <p>We define the schema and push data in the store. Then we create a feature space over the text of all the training tweets. The query is then used to create an ordered list of similar tweets. Here's the similarity vector: <code>0.71, 0.05, 0.02, 0.62"</code>. The first and the last tweets from the store are the most similar to the query tweet while the second and third are not too similar.</p>
-    <p>In the query tweet try making the words 'pen' and 'marker' plural and hit Run. Suddently only the first tweet is now computed as being similar to the query <code>0.97, 0, 0, 0</code>, even though, content-wise not much changed. Now add the following in the feature space definition after the last 'text': <code>, tokenizer: { type: "unicode", stopwords: "en", stemmer: "porter" }</code> and hit Run! The similarities now become the same as originally as the <code>stemmer: porter</code> makes sure these minor differences are ignored.</p>
+    <p>We define the schema and push data in the store. Then we create a feature space over the text 
+       of all the training tweets. The query is then used to create an ordered list of similar tweets.
+       Here's the similarity vector: <code>0.71, 0.05, 0.02, 0.62"</code>. The first and the last tweets
+       from the store are the most similar to the query tweet while the second and third are not too similar.</p>
+    <p>In the query tweet try making the words 'pen' and 'marker' plural and hit Run. Suddenly only the first 
+       tweet is now computed as being similar to the query <code>0.97, 0, 0, 0</code>, even though, 
+       content-wise not much changed. Now add the following in the feature space definition after the last 
+       'text': <code>, tokenizer: { type: "unicode", stopwords: "en", stemmer: "porter" }</code> and hit Run!
+       The similarities now become the same as originally as the <code>stemmer: porter</code> makes sure these 
+       minor differences are ignored.</p>
     <p>Play with it on <a href="https://runkit.com/carolninap/5a2167f7416c8700125315cf" class="post-read-more">RunKit</a>!</p>
   </div>
   <div class="col-xl-6 col-lg-6 col-md-6">
@@ -202,10 +217,15 @@ use-site-title: true
        </div>
   </div>
   <div class="col-xl-6 col-lg-6 col-md-6">
-    <h2 class="post-title"> Text stream</h2>
-    <p>QMiner is also able to process streaming data. Here's a custom defined stream aggregate. For native aggregates check the 'Time series' menu tab.</p>
-    <p>We define the schema as usually. We simulate our stream by creating the <code>s</code> vector. Each element of the vector has to comply with the pre-defined schema. Then we define out custom javascript stream aggregate that counts the frequency of the Names.</p>
-    <p>Note that when ingesting the stream, QMiner only keeps in memory the model and discards the data itself. The frequency of the two selected names is displayed after each new data point comes in:
+    <h2 class="post-title"> Text streams</h2>
+    <p>QMiner is also able to process streaming data. Here's a custom defined stream aggregate. 
+       For native aggregates check the 'Time series' menu tab.</p>
+    <p>We define the schema as usually. We simulate our stream by creating the <code>s</code> vector. 
+       Each element of the vector has to comply with the pre-defined schema. Then we define custom 
+       javascript stream aggregate that counts the frequency of the Names.</p>
+    <p>Note that when ingesting the stream, QMiner only keeps in memory the model and discards 
+       the data itself. The frequency of the two selected names is displayed after each new data
+       point comes in:
       <br><code>"[0] John:1 --- Mary:null"</code>
       <br><code>"[1] John:1 --- Mary:1"</code>
       <br><code>"[2] John:1 --- Mary:1"</code>
@@ -213,7 +233,12 @@ use-site-title: true
       <br><code>"[4] John:1 --- Mary:2"</code>
       <br><code>"[5] John:1 --- Mary:2"</code>
     </p>
-    <p>Now let's change this example to do word count. First change the fields on lines 7-9 to <code>{ name: 'text', type: 'string' }</code>. Now let's make sure each element of the stream complies with the schema, so update lines 17-23 to look like <code>s.push(ps.newRecord({ text: 'John'}));</code>. Replace line 29 with <code>data[rec.text] = data[rec.text] == undefined ? 1 : data[rec.text] + 1;</code>. Finally, replace line 45 with <code>console.log(stream.saveJson());</code>. Now try it out!</p>
+    <p>Now let's change this example to do word count. First change the fields on lines 7-9 to 
+       <code>{ name: 'text', type: 'string' }</code>. Now let's make sure each element of the 
+       stream complies with the schema, so update lines 17-23 to look like 
+       <code>s.push(ps.newRecord({ text: 'John'}));</code>. Replace line 29 with 
+       <code>data[rec.text] = data[rec.text] == undefined ? 1 : data[rec.text] + 1;</code>. 
+       Finally, replace line 45 with <code>console.log(stream.saveJson());</code>. Now try it out!</p>
     <p>The resulting output that counts frequent words looks like:
       <br><code>{John: 1}</code>
       <br><code>{John: 1, Mary: 1}</code>
