@@ -22,6 +22,7 @@ navbar-links:
 #  Time series: "timeseries"
   Anomaly detection: "anomalies"
   Javascript API: "https://rawgit.com/qminer/qminer/master/nodedoc/index.html"
+  Contributors: "contributors"
   GitHub: "https://github.com/qminer/qminer"
 
 # Image to show in the navigation bar - image must be a square (width = height)
