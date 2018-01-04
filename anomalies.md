@@ -41,9 +41,9 @@ let base = new qm.Base({
 let articles = base.store('Articles');
 ```
 
-Next we define the pipeline that processes the news articles. The pipelines has several processing modules: the model, the trigger, the anomaly detection algorithm and the actual alert.
+Next, we define the pipeline that processes the news articles. The pipelines have several processing modules: the model, the trigger, the anomaly detection algorithm and the actual alert.
 
-To keep a model of the past articles, we need feature space aggregator on the article store. The model will use the text from the "Text" of the article and will use "tfidf" weight to compute the importance of various words. The model will need at least 2 articles to be initialized and will consider pairs of two words (the n-grams) parameter.
+To keep a model of the past articles, we need feature space aggregator on the article store. The model will use the text from the "Text" of the article and will use "tfidf" weight to compute the importance of various words. The model will need at least two articles to be initialized and will consider pairs of two words (the n-grams) parameter.
 
 ```javascript
 let aggrFSA = {
