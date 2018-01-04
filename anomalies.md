@@ -5,24 +5,24 @@ title: Anomaly detection
 
 # Anomaly detection
 
-By anomaly we refer to patterns that are unusual, unexpected or rare in the data under analysis. With QMiner, anomalies can be detected on several types of static or dynamic data.
+By anomaly, we refer to a pattern that is unusual, unexpected or rare in the data under analysis. QMiner can detect anomalies on several types of static or dynamic data.
 
 ## Anomalies in text streams
 
-Let's try to detect new topics that are published in the media. These topics should be unseen or extremely rare in the analyzed data and can therefore seen as "anomalies". We assume that there is a stream of articles being pushed to the system. When new topics are detected, alerts are triggered.
+Let's try to detect novel topics published in the media. Novel (or "anomalous") topics are topics that were never or rarely observed in the past. We assume that there is a stream of articles being pushed to the system. 
 
 Let's first import all the relevant libraries.
 
-````javascript
+```javascript
 let qm = require('qminer');
 let fs = require('fs');
 let readline = require('readline');
 let eachline = require('eachline');
-````
+```
 
 Then we define the store called "Articles" having a schema with four fields.
 
-````javascript
+```javascript
 let base = new qm.Base({
     mode: 'createClean',
     schema:[
@@ -39,12 +39,13 @@ let base = new qm.Base({
 });
 
 let articles = base.store('Articles');
-````
+```
+
 Next we define the pipeline that processes the news articles. The pipelines has several processing modules: the model, the trigger, the anomaly detection algorithm and the actual alert.
 
 To keep a model of the past articles, we need feature space aggregator on the article store. The model will use the text from the "Text" of the article and will use "tfidf" weight to compute the importance of various words. The model will need at least 2 articles to be initialized and will consider pairs of two words (the n-grams) parameter.
 
-````javascript
+```javascript
 let aggrFSA = {
    name: "ftrSpaceAggr",
    type: "featureSpace",
@@ -66,11 +67,11 @@ let aggrFSA = {
 }; 
 
 let ftrSpaceAggr = articles.addStreamAggr(aggrFSA);
-````
+```
 
 This prototype examines articles at a constant rate. We use an artificial time series to simulate this constant rate. We implement it using the tick stream aggregator for the 'Articles' store. The model defined before updates at this rate.
 
-````javascript
+```javascript
 let aggrT = {
     name: "tickAggr",
     type: "timeSeriesTick",
@@ -80,11 +81,11 @@ let aggrT = {
 };
 //create the tick aggregator
 let tickAggr = articles.addStreamAggr(aggrT);
-````
+```
 
 The novelty detection is implemented using the Nearest Neighbors anomaly detector aggregator. The aggregator takes timestamped features as input. The time stamp is provided by the previously defined tick aggregator and feature space aggregator. It considers a window of 200 most recent articles and computes the distances between these. The most distant articles are considered as anomalies. The rate of anomalies can be tuned using the "rate" parameter - play with it on RunKit!
 
-````javascript
+```javascript
 let aggrAD = {
     name: 'AnomalyDetectorAggr',
     type: 'nnAnomalyDetector',
@@ -96,22 +97,22 @@ let aggrAD = {
 
 // Create the anomaly detection aggregator
 let anomaly = articles.addStreamAggr(aggrAD);
-````
+```
  
-The alert monitoring stream aggregate is a custom defined stream aggegate that outputs alerts with severity levels above 2. 
+The alert monitoring stream aggregate is a custom defined stream aggregate that outputs alerts with severity levels above 2. 
 
-````javascript
+```javascript
 // Define monitoring stream aggregate.
 let monitoringAggr = articles.addStreamAggr({
     onAdd: (rec) => {        
         if (anomaly.getInteger() > 2) console.log("Rate " + anomaly.getInteger() + ": " + rec["Title"]);        
     }
 });
-````
+```
 
 Now that the processing pipeline is defined, we can start pushing the stream of data in the system Articles are loaded from our server.
 
-````javascript
+```javascript
 // Define a global variable for storing the results.
 let results = [];
 let rates = [];
@@ -134,17 +135,17 @@ lines.forEach(line => {
         rates.push(anomaly.getInteger());
     }
 });
-````
+```
 
-Display all the results ...
+Display all the results.
 
-````javascript
+```javascript
 console.log(JSON.stringify(results));
-````
+```
 
-Display counts (you can visualize histogram/chart);
+Display counts (you can visualize histogram/chart).
 
-````javascript
+```javascript
 rates.forEach(rate => count[rate]++);
 console.log(JSON.stringify(count));
-````
+```
