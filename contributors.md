@@ -3,7 +3,9 @@ layout: page
 title: Contributors
 ---
 
-QMiner is developed in collaboration between AILab at Jozef Stefan Institute and Quintelligence. 
+[QMiner](http://qminer.ijs.si/) is developed by [AILab](http://ailab.ijs.si/) at 
+[Jozef Stefan Institute](http://www.ijs.si/), [Quintelligence](http://quintelligence.com) and other contributors.
+
 The development was started by Blaz Fortuna and is now headed together with Jan Rupnik.
 
 <img src="https://avatars1.githubusercontent.com/u/775988?s=100&v=4"><img src="https://avatars2.githubusercontent.com/u/900388?s=100&v=4">
@@ -17,8 +19,7 @@ Miha Papler, Luis Rei, Blaz Sovdat, Tadej Stajner, Luka Stopar, Jasna Urbancic.
 
 <img src="https://avatars0.githubusercontent.com/u/10399584?s=100&v=4"><img src="https://avatars3.githubusercontent.com/u/9943382?s=100&v=4"><img src="https://avatars1.githubusercontent.com/u/841867?s=100&v=4"><img src="https://avatars3.githubusercontent.com/u/35857?s=100&v=4"><img src="https://avatars1.githubusercontent.com/u/795782?s=100&v=4"><img src="https://avatars3.githubusercontent.com/u/1324568?s=100&v=4">
 
-[QMiner](http://qminer.ijs.si/) is developed by [AILab](http://ailab.ijs.si/) at 
-[Jozef Stefan Institute](http://www.ijs.si/), [Quintelligence](http://quintelligence.com) and other contributors.
+## Acknowledgments
 
 The authors would like to acknowledge funding from the European Union Seventh Framework Programme, under Grant 
 Agreements 288342 ([XLike](http://www.xlike.org/)), 611346 ([XLime](http://xlime.eu)), 611875 ([Symphony](http://projectsymphony.eu)), 
