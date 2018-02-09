@@ -30,4 +30,4 @@ and 612329 ([ProaSense](http://www.proasense.eu)).
 This project has received funding from the European Union's Horizon 2020 research and innovation programme 
 under grant agreement No 636160-2 ([Optimum](http://www.optimumproject.eu/)).
 
-![](http://ailab.ijs.si/~blazf/eu.png)
+<img src="http://ailab.ijs.si/~blazf/eu.png">
