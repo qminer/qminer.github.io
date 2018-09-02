@@ -15,7 +15,7 @@ Luka Bradesko, Janez Brank, Carolina Fortuna, Marko Grobelnik, Viktor Jovanoski,
 Klemen Kenda, Gregor Leban, Dunja Mladenic, Andrej Muhic, Blaz Novak, Erik Novak, Jost Novljan, Alma Osmic,
 Miha Papler, Luis Rei, Blaz Sovdat, Tadej Stajner, Luka Stopar, Jasna Urbancic.
 
-<img src="https://avatars0.githubusercontent.com/u/817095?s=100&v=4"><img src="https://avatars2.githubusercontent.com/u/976460?s=100&v=4"><img src="https://avatars2.githubusercontent.com/u/1841701?s=100&v=4"><img src="https://avatars1.githubusercontent.com/u/808516?s=100&v=4"><img src="https://avatars2.githubusercontent.com/u/5764852?s=100&v=4"><img src="https://avatars1.githubusercontent.com/u/809658?s=100&v=4">
+<img src="https://avatars0.githubusercontent.com/u/817095?s=100&v=4"><img src="https://avatars2.githubusercontent.com/u/976460?s=100&v=4"><img src="https://avatars2.githubusercontent.com/u/1841701?s=100&v=4"><img src="https://avatars1.githubusercontent.com/u/808516?s=100&v=4"><img src="https://avatars2.githubusercontent.com/u/5764852?s=100&v=4"><img src="https://avatars1.githubusercontent.com/u/809658?s=100&v=4"><img src="https://avatars2.githubusercontent.com/u/893367?s=100&v=4">
 
 <img src="https://avatars0.githubusercontent.com/u/10399584?s=100&v=4"><img src="https://avatars3.githubusercontent.com/u/9943382?s=100&v=4"><img src="https://avatars1.githubusercontent.com/u/841867?s=100&v=4"><img src="https://avatars3.githubusercontent.com/u/35857?s=100&v=4"><img src="https://avatars1.githubusercontent.com/u/795782?s=100&v=4"><img src="https://avatars3.githubusercontent.com/u/1324568?s=100&v=4">
 
