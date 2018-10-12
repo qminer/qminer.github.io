@@ -11,7 +11,7 @@ baseurl: ""
 title: QMiner
 
 # Short description of your site
-description: A virtual proof that name is awesome!
+description: a Node.js addon for data processing
 
 # --- Navigation bar options --- #
 
